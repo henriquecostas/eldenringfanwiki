@@ -2,15 +2,25 @@
   <div>
     <ul>
       <li v-for="classe of classes.data">
-        <p> {{ classe.name }}</p>
-        <img :src="classe.image" :alt="classe.name">
+        <class-panel 
+          :className="classe.name" 
+          :classTitle="classe.name"
+          :classImage="classe.image"
+        > 
+        </class-panel>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import Panel from './components/shared/panel/Panel.vue';
+
 export default {
+  components:{
+    'class-panel': Panel
+  },
+
   data (){
     return {
       classes: []
@@ -18,12 +28,19 @@ export default {
   },
 
   created() {
-    let promise = this.$http.get('https://eldenring.fanapis.com/api/classes');
-    promise.then(res => res.json().then(classes => this.classes = classes));
+    this.$http.get('https://eldenring.fanapis.com/api/classes')
+    .then(res => res.json())
+    .then(classes => this.classes = classes, err => console.log(err));
   }
 }
 </script>
 
 <style>
+
+  body {
+    background: url('https://images8.alphacoders.com/118/1186452.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
 </style>
