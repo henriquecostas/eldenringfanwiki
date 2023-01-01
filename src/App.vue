@@ -1,16 +1,20 @@
 <template>
   <div>
-    <ul>
-      <li v-for="classe of classes.data">
-        <class-panel 
-          :className="classe.name" 
-          :classTitle="classe.name"
-          :classImage="classe.image"
-        > 
-        </class-panel>
-      </li>
-    </ul>
-  </div>
+    <div class="class-info-panel">
+      <ul class="class-info-list">
+        <li class="class-info-list-item" v-for="classe of classes.data">
+          <class-panel 
+            :className="classe.name" 
+            :classTitle="classe.name"
+            :classImage="classe.image"
+            :classStats="classe.stats"
+            :classStatsValue="classe.stats"
+          > 
+          </class-panel>
+        </li>
+      </ul>
+    </div>
+</div>
 </template>
 
 <script>
@@ -37,10 +41,35 @@ export default {
 
 <style>
 
+  html {
+    height: 100%;
+  }
+
   body {
     background: url('https://images8.alphacoders.com/118/1186452.jpg');
-    background-repeat: no-repeat;
     background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .class-info-panel {
+    background-color: #00000075;
+    height: 620px;
+    width: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
+  .class-info-list{
+    width: 100%;
+    list-style: none; 
+    margin: 0 auto;
+    overflow-x: scroll;
+    padding: 0;
+  }
+  
+  .class-info-list-item{
+    display: table-cell;
   }
 
 </style>
